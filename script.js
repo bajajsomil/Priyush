@@ -71,6 +71,32 @@ document.addEventListener('DOMContentLoaded', () => {
     audio.loop = true;
     audio.src = "https://archive.org/download/Mangalyam/Mangalyam.mp3";
 
+    const playMusic = () => {
+        audio.play().then(() => {
+            isPlaying = true;
+            if (musicBtn) {
+                musicBtn.querySelector('.music-icon').innerText = "🔊";
+                musicBtn.classList.add('pulse-glow');
+            }
+        }).catch(e => {
+            console.log("Audio autoplay blocked by browser. Waiting for interaction.");
+        });
+    };
+
+    // Attempt autoplay immediately
+    playMusic();
+
+    // Try to play on first user interaction if not already playing
+    const interactionEvents = ['click', 'touchstart', 'scroll'];
+    const playOnInteract = () => {
+        if (!isPlaying) {
+            playMusic();
+        }
+        interactionEvents.forEach(event => document.removeEventListener(event, playOnInteract));
+    };
+
+    interactionEvents.forEach(event => document.addEventListener(event, playOnInteract, { once: true }));
+
     // Add class for custom cursor scaling when hovering a links and buttons
     const interactables = document.querySelectorAll('a, button, .music-btn');
     interactables.forEach(el => {
@@ -83,17 +109,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (musicBtn) {
-        musicBtn.addEventListener('click', () => {
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent triggering the document interaction listener
             if (!isPlaying) {
                 audio.play().catch(e => console.log("Audio play blocked"));
                 musicBtn.querySelector('.music-icon').innerText = "🔊";
                 musicBtn.classList.add('pulse-glow');
+                isPlaying = true;
             } else {
                 audio.pause();
                 musicBtn.querySelector('.music-icon').innerText = "🎵";
                 musicBtn.classList.remove('pulse-glow');
+                isPlaying = false;
             }
-            isPlaying = !isPlaying;
         });
     }
 });
