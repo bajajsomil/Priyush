@@ -128,7 +128,8 @@ h1, h2, h3 {
 
 /* Hero */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100dvh;
     background: url('hero.png') no-repeat center center/cover;
     background-attachment: fixed;
     display: flex;
@@ -568,15 +569,59 @@ h1, h2, h3 {
 }
 
 @media (max-width: 768px) {
-    .couple-names { font-size: 5rem; }
-    .ampersand { font-size: 3rem; }
-    .sub-title-elegant { font-size: 0.7rem; letter-spacing: 5px; }
-    .countdown-timer-elegance { flex-wrap: wrap; gap: 15px; }
-    .timer-item-glass { min-width: 120px; padding: 20px; }
-    .timer-item-glass span { font-size: 2.5rem; }
-    .event-num { font-size: 4rem; }
-    .section-title-elegant { font-size: 2.5rem; }
-    .script-quote { font-size: 2.5rem; }
-    .custom-cursor, .cursor-follower { display: none; } /* Disable custom cursor on mobile */
+    .container { padding: 0 20px; }
+
+    /* Reduce massive section paddings */
+    .story-section, 
+    .countdown-section, 
+    .events-section-elegant, 
+    .venue-section-elegant, 
+    .royal-footer {
+        padding: 80px 0;
+    }
+
+    /* Hero adjustments */
+    .hero, .countdown-section, .royal-footer { background-attachment: scroll; }
+    .couple-names { font-size: 4rem; margin: 10px 0; }
+    .ampersand { font-size: 2.5rem; }
+    .sub-title-elegant { font-size: 0.65rem; letter-spacing: 3px; }
+    .wedding-date-elegant { font-size: 1.5rem; letter-spacing: 5px; }
+    .location-brief-elegant { font-size: 0.8rem; letter-spacing: 2px; }
+
+    /* Typography & Layout */
+    .section-title-elegant { font-size: 2.2rem; margin-bottom: 40px; }
+    .script-quote { font-size: 2.2rem; line-height: 1.4; margin-bottom: 25px; }
+    .story-text { font-size: 0.95rem; }
+
+    /* Countdown Grid */
+    .countdown-timer-elegance { flex-wrap: wrap; justify-content: center; gap: 15px; }
+    .timer-item-glass { flex: 1 1 calc(50% - 15px); min-width: 120px; padding: 20px 10px; }
+    .timer-item-glass span { font-size: 2.2rem; }
+    .timer-item-glass label { font-size: 0.65rem; }
+
+    /* Events */
+    .event-showcase { gap: 40px; }
+    .event-row, .event-row.right-align { padding: 30px 20px; gap: 20px; }
+    .event-num { font-size: 3.5rem; }
+    .event-details h3 { font-size: 1.8rem; margin-bottom: 15px; }
+    .event-details p { font-size: 0.95rem; }
+    .dress-code { font-size: 0.75rem; padding: 6px 15px; }
+
+    /* Venue */
+    .venue-name { font-size: 2.5rem; }
+    .venue-desc { font-size: 1rem; margin-bottom: 30px; }
+    .venue-image-wrapper { height: 300px; margin-top: 30px; }
+    .btn-royal { padding: 14px 25px; font-size: 0.8rem; }
+
+    /* Footer */
+    .couple-names-footer { font-size: 3.5rem; }
+    .hashtag { font-size: 1rem; letter-spacing: 3px; }
+    .rsvp-text { font-size: 1.4rem; }
+
+    /* Music Button */
+    .music-btn { bottom: 20px; right: 20px; width: 45px; height: 45px; }
+
+    /* Custom Cursor Disable */
+    .custom-cursor, .cursor-follower { display: none; }
     * { cursor: auto; }
 }
