@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isPlaying = false;
     const audio = new Audio();
     audio.loop = true;
-    audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"; 
+    audio.src = "https://archive.org/download/Mangalyam/Mangalyam.mp3";
 
     // Add class for custom cursor scaling when hovering a links and buttons
     const interactables = document.querySelectorAll('a, button, .music-btn');
